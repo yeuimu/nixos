@@ -15,15 +15,13 @@ in
   # User software
   home.packages = with pkgs; [
     
-    firefox
-    kitty
-
     v2ray
     v2raya
 
+    zsh
+    neovim
     kitty
     firefox
-
     nnn
 
     # archives
@@ -48,6 +46,16 @@ in
 
   ];
 
+  # 启用并配置 zsh 作为默认 shell
+  programs.zsh = {
+    enable = true;
+    oh-my-zsh.enable = true;  # 可选：启用 oh-my-zsh
+    # 配置其他 zsh 选项
+  };
+
+  # 设置 zsh 作为默认 shell
+  home.sessionVariables.SHELL = "${pkgs.zsh}/bin/zsh";
+
   # kitty
   home.file.".config/kitty" = {
     source = "${dotfiles}/kitty";
@@ -63,9 +71,9 @@ in
   };
 
   # zsh
-  home.file.".zshrc" = {
-    source = "${dotfiles}/zsh/.zshrc";
-  };
+  # home.file.".zshrc" = {
+  #   source = "${dotfiles}/zsh/.zshrc";
+  # };
 
   # git
   programs.git = {

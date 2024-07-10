@@ -16,25 +16,58 @@
   networking.networkmanager.enable = true;
   networking.hostName = "nixos";
   time.timeZone = "Asia/Shanghai";
-  i18n.defaultLocale = "en_US.UTF-8";
 
   # Desktop
   services.xserver.enable = true;
   services.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
   services.libinput.enable = true;
+  i18n.defaultLocale = "zh_CN.UTF-8";
 
+  # ssh
+  services.openssh.enable = true;
+
+  fonts = {
+      fontDir.enable = true;
+      fonts = with pkgs; [
+          noto-fonts
+          source-code-pro
+          source-han-sans
+          source-han-serif
+          sarasa-gothic
+      ];
+      # 设置 fontconfig 防止出现乱码
+      fontconfig = {
+          defaultFonts = {
+              emoji = [
+                  "Noto Color Emoji"
+              ];
+              monospace = [
+                  "Noto Sans Mono CJK SC"
+                  "Sarasa Mono SC"
+                  "DejaVu Sans Mono"
+              ];
+              sansSerif = [
+                  "Noto Sans CJK SC"
+                  "Source Han Sans SC"
+                  "DejaVu Sans"
+              ];
+              serif = [
+                  "Noto Serif CJK SC"
+                  "Source Han Serif SC"
+                  "DejaVu Serif"
+              ];
+          };
+      };
+  };
 
   # System software
   environment.systemPackages = with pkgs; [
-    neovim
+    vim
     git
-    wget
-    curl
     bash
-    zsh
   ];
-  environment.variables.EDITOR = "nvim";
+  environment.variables.EDITOR = "vim";
   
   # Sound
   sound.enable = true;
@@ -47,10 +80,8 @@
     description = "I am what is me.";
     extraGroups = [ "wheel" "networkmanager" ];
     password = "yoyoki";
-    shell = pkgs.zsh;
   };
   users.defaultUserShell = pkgs.bash;
-  programs.zsh.enable = true;
 
   nix.settings.substituters = [ 
     "https://mirror.sjtu.edu.cn/nix-channels/store"
