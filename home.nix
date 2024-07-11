@@ -62,6 +62,27 @@ in
       theme = "robbyrussell";
       plugins = ["git"];
     };
+    initExtra = ''
+    # alias
+    alias v="nvim"
+    alias vim="nvim"
+    alias vi="nvim"
+    alias c="cd"
+    alias b="cd .."
+    alias x="startx"
+    alias cls="clear"
+    alias e="emacs -nw"
+    alias sd="sudo"
+    alias soft="ssh soft"
+
+    # fcitx setting
+    export XMODIFIERS=@im=fcitx
+    export GTK_IM_MODULE=xim
+    export QT_IM_MODULE=fcitx
+    export DefaultIMModule=fcitx
+
+    set -o vi
+    '';
   };
 
   # kitty
