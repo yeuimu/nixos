@@ -17,10 +17,25 @@
   networking.hostName = "nixos";
   time.timeZone = "Asia/Shanghai";
 
+  # System software
+  environment.systemPackages = with pkgs; [
+    vim
+    git
+    bash
+    zsh
+    sxhkd
+  ];
+  environment.variables.EDITOR = "vim";
+
   # Desktop
   services.xserver.enable = true;
   services.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.windowManager.bspwm = {
+    enable = true;
+    # configFile = "${pkgs.bspwm}/share/doc/bspwm/examples/bspwmrc";
+    # sxhkd.configFile = "${pkgs.bspwm}/share/doc/bspwm/examples/sxhkdrc";
+  };
   services.libinput.enable = true;
   i18n.defaultLocale = "zh_CN.UTF-8";
 
@@ -32,6 +47,8 @@
       fontDir.enable = true;
       packages = with pkgs; [
           noto-fonts
+          noto-fonts-cjk-sans
+          noto-fonts-cjk-serif
           jetbrains-mono
           (terminus-nerdfont.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
       ];
@@ -59,15 +76,6 @@
       };
   };
 
-  # System software
-  environment.systemPackages = with pkgs; [
-    vim
-    git
-    bash
-    zsh
-  ];
-  environment.variables.EDITOR = "vim";
-  
   # Sound
   sound.enable = true;
   hardware.pulseaudio.enable = true;
