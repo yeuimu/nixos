@@ -32,10 +32,7 @@
       fontDir.enable = true;
       packages = with pkgs; [
           noto-fonts
-          source-code-pro
-          source-han-sans
-          source-han-serif
-          sarasa-gothic
+          jetbrains-mono
           (terminus-nerdfont.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
       ];
       fontconfig = {
@@ -44,21 +41,18 @@
                   "Noto Color Emoji"
               ];
               monospace = [
+                  "JetBrains Mono"
                   "Noto Sans Mono CJK SC"
-                  "Sarasa Mono SC"
-                  "DejaVu Sans Mono"
                   "Symbols Nerd Font"
               ];
               sansSerif = [
+                  "Noto Sans"
                   "Noto Sans CJK SC"
-                  "Source Han Sans SC"
-                  "DejaVu Sans"
                   "Symbols Nerd Font"
               ];
               serif = [
+                  "Noto Serif"
                   "Noto Serif CJK SC"
-                  "Source Han Serif SC"
-                  "DejaVu Serif"
                   "Symbols Nerd Font"
               ];
           };

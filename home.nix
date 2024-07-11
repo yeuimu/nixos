@@ -99,10 +99,8 @@ in
     executable = true;
   };
 
-  # zsh
-  # home.file.".zshrc" = {
-  #   source = "${dotfiles}/zsh/.zshrc";
-  # };
+  # fontconfig
+  home.file.".config/fontconfig/fonts.conf".source = "${dotfiles}/fontconfig/fonts.config";
 
   # itself
   home.stateVersion = "24.05";
