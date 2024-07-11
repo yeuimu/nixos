@@ -23,6 +23,7 @@ in
     kitty
     firefox
     nnn
+    git
 
     # archives
     zip
@@ -46,15 +47,22 @@ in
 
   ];
 
-  # 启用并配置 zsh 作为默认 shell
-  programs.zsh = {
+  # git
+  programs.git = {
     enable = true;
-    oh-my-zsh.enable = true;  # 可选：启用 oh-my-zsh
-    # 配置其他 zsh 选项
+    userEmail = "2197651308@qq.com";
+    userName = "yoyoki";
   };
 
-  # 设置 zsh 作为默认 shell
-  home.sessionVariables.SHELL = "${pkgs.zsh}/bin/zsh";
+  # zsh
+  programs.zsh = {
+    enable = true;
+    oh-my-zsh = {
+      enable = true;
+      theme = "robbyrussell";
+      plugins = ["git"];
+    };
+  };
 
   # kitty
   home.file.".config/kitty" = {
@@ -74,13 +82,6 @@ in
   # home.file.".zshrc" = {
   #   source = "${dotfiles}/zsh/.zshrc";
   # };
-
-  # git
-  programs.git = {
-    enable = true;
-    userName = "yoyoki";
-    userEmail = "yeuimuyeuimu@gmail.com";
-  };
 
   # itself
   home.stateVersion = "24.05";

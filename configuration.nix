@@ -27,16 +27,17 @@
   # ssh
   services.openssh.enable = true;
 
+  # fonts
   fonts = {
       fontDir.enable = true;
-      fonts = with pkgs; [
+      packages = with pkgs; [
           noto-fonts
           source-code-pro
           source-han-sans
           source-han-serif
           sarasa-gothic
+          (terminus-nerdfont.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
       ];
-      # 设置 fontconfig 防止出现乱码
       fontconfig = {
           defaultFonts = {
               emoji = [
@@ -46,16 +47,19 @@
                   "Noto Sans Mono CJK SC"
                   "Sarasa Mono SC"
                   "DejaVu Sans Mono"
+                  "Symbols Nerd Font"
               ];
               sansSerif = [
                   "Noto Sans CJK SC"
                   "Source Han Sans SC"
                   "DejaVu Sans"
+                  "Symbols Nerd Font"
               ];
               serif = [
                   "Noto Serif CJK SC"
                   "Source Han Serif SC"
                   "DejaVu Serif"
+                  "Symbols Nerd Font"
               ];
           };
       };
@@ -66,6 +70,7 @@
     vim
     git
     bash
+    zsh
   ];
   environment.variables.EDITOR = "vim";
   
@@ -74,12 +79,14 @@
   hardware.pulseaudio.enable = true;
 
   # User
+  programs.zsh.enable = true;
   users.users.yoyoki = {
     isNormalUser = true;
     home = "/home/yoyoki";
     description = "I am what is me.";
     extraGroups = [ "wheel" "networkmanager" ];
     password = "yoyoki";
+    shell = pkgs.zsh;
   };
   users.defaultUserShell = pkgs.bash;
 
