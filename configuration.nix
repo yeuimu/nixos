@@ -33,8 +33,6 @@
   services.xserver.desktopManager.plasma5.enable = true;
   services.xserver.windowManager.bspwm = {
     enable = true;
-    # configFile = "${pkgs.bspwm}/share/doc/bspwm/examples/bspwmrc";
-    # sxhkd.configFile = "${pkgs.bspwm}/share/doc/bspwm/examples/sxhkdrc";
   };
   services.libinput.enable = true;
   i18n.defaultLocale = "zh_CN.UTF-8";
@@ -77,8 +75,18 @@
   };
 
   # Sound
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  sound = {
+    enable = true;
+    extraConfig = ''
+      defaults.pcm.card 0
+      defaults.ctl.card 0
+    '';
+  };
+  hardware.pulseaudio = {
+    enable = true;
+    support32Bit = true;
+    package = pkgs.pulseaudioFull;
+  };
 
   # User
   programs.zsh.enable = true;
@@ -90,14 +98,18 @@
     password = "yoyoki";
     shell = pkgs.zsh;
   };
-  users.defaultUserShell = pkgs.bash;
 
-  nix.settings.substituters = [ 
-    "https://mirror.sjtu.edu.cn/nix-channels/store"
-    "https://mirrors.ustc.edu.cn/nix-channels/store"
-    "https://mirrors.cernet.edu.cn/nix-channels/store"
-  ];
+  nix.settings = {
+    trusted-users = ["yoyoki"];
+    substituters = [ 
+      "https://mirror.sjtu.edu.cn/nix-channels/store"
+      "https://mirrors.ustc.edu.cn/nix-channels/store"
+      
+      "https://cache.nixos.org"
+    ];
+  };
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.pulseaudio = true;
   system.stateVersion = "24.05";
 }
 

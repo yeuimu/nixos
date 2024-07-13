@@ -1,28 +1,29 @@
 { config, pkgs, ... }:
 
-let
-  # dotfiles仓库
-  dotfiles = pkgs.fetchgit {
-    url = "https://gitee.com/yeuimu/dotfiles.git";
-    rev = "refs/heads/main";
-    sha256 = "14hwpsm8wds5v184mpgksfvqpsj8vpjxhz8xvs69bw9m141f3bs2";
-  };
-in
 {
   home.username = "yoyoki";
   home.homeDirectory = "/home/yoyoki";
 
   # User software
   home.packages = with pkgs; [
-    
+    # Destop
+    feh
+    rofi
+    polybar
+    picom
+
+    # GUI Software
+    kitty
+    firefox
+    wpsoffice-cn
+    pavucontrol
+
+    # Proxy
     v2ray
     v2raya
 
     zsh
     neovim
-    kitty
-    firefox
-    nnn
     git
 
     # archives
@@ -41,7 +42,6 @@ in
     aria2 # download utility
 
     # misc
-    file
     which
     tree
 
@@ -87,22 +87,60 @@ in
 
   # kitty
   home.file.".config/kitty" = {
-    source = "${dotfiles}/kitty";
+    source = ./dotfiles/kitty;
     recursive = true;
     executable = true;
   };
 
   # neovim
   home.file.".config/nvim" = {
-    source = "${dotfiles}/nvim";
+    source = ./dotfiles/nvim;
     recursive = true;
     executable = true;
   };
 
-  # fontconfig
-  home.file.".config/fontconfig/fonts.conf".source = "${dotfiles}/fontconfig/fonts.config";
+  # emacs
+  home.file.".emacs.d" = {
+    source = dotfiles/.emacs.d;
+    recursive = true;
+    executable = true;
+  };
+
+  # feh
+  home.file.".config/feh" = {
+    source = dotfiles/feh;
+    recursive = true;
+    executable = true;
+  };
+
+  # bspwm
+  home.file.".config/bspwm/bspwmrc".source = ./dotfiles/bspwm/bspwmrc;
+
+  # sxhkd
+  home.file.".config/sxhkd/sxhkdrc".source = ./dotfiles/sxhkd/sxhkdrc;
+
+  # picom
+  home.file.".config/picom/picom.conf".source = ./dotfiles/picom/picom.conf;
+
+  # sound
+  home.file.".asoundrc".source = ./dotfiles/.asoundrc;
+
+  # rofi
+  home.file.".config/rofi" = {
+    source = ./dotfiles/rofi;
+    recursive = true;
+    executable = true;
+  };
+
+  # polybar
+  home.file.".config/polybar" = {
+    source = ./dotfiles/polybar;
+    recursive = true;
+    executable = true;
+  };
 
   # itself
   home.stateVersion = "24.05";
   programs.home-manager.enable = true;
+
 }
