@@ -87,14 +87,14 @@
 
   # kitty
   home.file.".config/kitty" = {
-    source = ./dotfiles/kitty;
+    source = ../dotfiles/kitty;
     recursive = true;
     executable = true;
   };
 
   # neovim
   home.file.".config/nvim" = {
-    source = ./dotfiles/nvim;
+    source = ../dotfiles/nvim;
     recursive = true;
     executable = true;
   };
@@ -114,27 +114,27 @@
   };
 
   # bspwm
-  home.file.".config/bspwm/bspwmrc".source = ./dotfiles/bspwm/bspwmrc;
+  home.file.".config/bspwm/bspwmrc".source = ../dotfiles/bspwm/bspwmrc;
 
   # sxhkd
-  home.file.".config/sxhkd/sxhkdrc".source = ./dotfiles/sxhkd/sxhkdrc;
+  home.file.".config/sxhkd/sxhkdrc".source = ../dotfiles/sxhkd/sxhkdrc;
 
   # picom
-  home.file.".config/picom/picom.conf".source = ./dotfiles/picom/picom.conf;
+  home.file.".config/picom/picom.conf".source = ../dotfiles/picom/picom.conf;
 
   # sound
-  home.file.".asoundrc".source = ./dotfiles/.asoundrc;
+  home.file.".asoundrc".source = ../dotfiles/.asoundrc;
 
   # rofi
   home.file.".config/rofi" = {
-    source = ./dotfiles/rofi;
+    source = ../dotfiles/rofi;
     recursive = true;
     executable = true;
   };
 
   # polybar
   home.file.".config/polybar" = {
-    source = ./dotfiles/polybar;
+    source = ../dotfiles/polybar;
     recursive = true;
     executable = true;
   };
