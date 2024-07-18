@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   nix.settings = {
@@ -15,6 +15,7 @@
 
   wsl.defaultUser = "yoyoki";
   wsl.enable = true;
+  # inputs.vscode-remote-workaround.enable = true;
 
   # System Config
   networking.networkmanager.enable = true;
@@ -26,9 +27,16 @@
     vim
     git
     zsh
+    wget
+    curl
   ];
   environment.variables.EDITOR = "vim";
   i18n.defaultLocale = "zh_CN.UTF-8";
+  programs.nix-ld = {
+    enable = true;
+    package = pkgs.nix-ld-rs;
+  };
+  vscode-remote-workaround.enable = true;
 
   # ssh
   services.openssh.enable = true;

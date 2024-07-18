@@ -6,6 +6,7 @@
     homeDirectory = "/home/yoyoki";
     packages = with pkgs; [
       emacs
+      neovim
     ];
     stateVersion = "24.05";
     file = {
