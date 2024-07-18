@@ -5,8 +5,15 @@
     username = "yoyoki";
     homeDirectory = "/home/yoyoki";
     packages = with pkgs; [
+      # editor
       emacs
       neovim
+      # utility
+      unzip
+      # dev
+      gcc
+      gnumake
+      nodenv
     ];
     stateVersion = "24.05";
     file = {
@@ -38,17 +45,17 @@
         plugins = ["git"];
       };
       initExtra = ''
-      alias v="nvim"
-      alias vim="nvim"
-      alias vi="nvim"
-      alias c="cd"
-      alias b="cd .."
-      alias x="startx"
-      alias cls="clear"
-      alias e="emacs -nw"
-      alias sd="sudo"
-      alias soft="ssh soft"
-      set -o vi
+        alias v="nvim"
+        alias vim="nvim"
+        alias vi="nvim"
+        alias c="cd"
+        alias b="cd .."
+        alias x="startx"
+        alias cls="clear"
+        alias e="emacs -nw"
+        alias sd="sudo"
+        alias soft="ssh soft"
+        set -o vi
       '';
     };
   };

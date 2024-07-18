@@ -15,7 +15,6 @@
 
   wsl.defaultUser = "yoyoki";
   wsl.enable = true;
-  # inputs.vscode-remote-workaround.enable = true;
 
   # System Config
   networking.networkmanager.enable = true;
@@ -38,6 +37,9 @@
   };
   vscode-remote-workaround.enable = true;
 
+  # docker
+  virtualisation.docker.enable = true;
+
   # ssh
   services.openssh.enable = true;
 
@@ -49,10 +51,11 @@
         isNormalUser = true;
         home = "/home/yoyoki";
         description = "I am what is me.";
-        extraGroups = [ "wheel" "networkmanager" ];
+        extraGroups = [ "wheel" "networkmanager" "docker" ];
         password = "yoyoki";
         shell = pkgs.zsh;
-      };
+    };
+    extraGroups.docker.members = [ "yoyoki" ];
   };
 
 }
