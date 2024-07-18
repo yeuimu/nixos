@@ -1,22 +1,16 @@
 return {
   -- theme
   {
-    'folke/tokyonight.nvim',
+    "catppuccin/nvim",
+    name = "catppuccin",
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme('tokyonight')
+      vim.cmd.colorscheme('catppuccin')
     end,
   },
-  -- {
-  --   'kepano/flexoki-neovim',
-  --   name = 'flexoki',
-  --   lazy = false,
-  --   config = function()
-  --     vim.cmd('colorscheme flexoki-dark')
-  --   end
-  -- },
-  -- nvim-tree
+
+  -- file explorer
   {
     'nvim-tree/nvim-tree.lua',
     dependencies = {
