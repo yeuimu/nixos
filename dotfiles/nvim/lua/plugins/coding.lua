@@ -65,6 +65,9 @@ local langs = {
   },
   vue = {
     ft = 'vue',
+  },
+  python = {
+    ft = 'python',
   }
 }
 
