@@ -68,6 +68,9 @@ local langs = {
   },
   python = {
     ft = 'python',
+    lsp = 'pyright',
+    lspconfig = 'pyright',
+    formatter = 'autopep8',
   }
 }
 
