@@ -14,6 +14,8 @@
       gcc
       gnumake
       nodenv
+      nodejs_20
+      python3
     ];
     stateVersion = "24.05";
     file = {
