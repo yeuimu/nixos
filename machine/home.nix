@@ -101,14 +101,14 @@
 
   # emacs
   home.file.".emacs.d" = {
-    source = dotfiles/.emacs.d;
+    source = ../dotfiles/.emacs.d;
     recursive = true;
     executable = true;
   };
 
   # feh
   home.file.".config/feh" = {
-    source = dotfiles/feh;
+    source = ../dotfiles/feh;
     recursive = true;
     executable = true;
   };
