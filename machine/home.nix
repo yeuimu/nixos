@@ -6,44 +6,41 @@
 
   # User software
   home.packages = with pkgs; [
-    # Destop
-    feh
-    rofi
-    polybar
-    picom
+  #   # Destop for bspwm
+  #   feh
+  #   rofi
+  #   polybar
+  #   picom
+  #   pavucontrol
 
-    # GUI Software
-    kitty
-    firefox
-    wpsoffice-cn
-    pavucontrol
+     # GUI Software
+     kitty
+     firefox
+  #   wpsoffice-cn
 
     # Proxy
     v2ray
     v2raya
 
-    zsh
-    neovim
-    git
+  #   zsh
+     neovim
 
-    # archives
-    zip
-    xz
-    unzip
-    p7zip
+  #   # archives
+  #   zip
+  #   xz
+  #   unzip
+  #   p7zip
 
-    # utils
-    ripgrep # grep
-    jq # JSON processor
-    eza # ls
-    fzf # fuzzy finder
+  #   # utils
+  #   ripgrep # grep
+  #   eza # ls
+  #   fzf # fuzzy finder
 
-    # networking tools
-    aria2 # download utility
+  #   # networking tools
+  #   aria2 # download utility
 
-    # misc
-    which
-    tree
+  #   # misc
+  #   tree
 
   ];
 
@@ -64,9 +61,9 @@
     };
     initExtra = ''
     # alias
-    alias v="nvim"
-    alias vim="nvim"
-    alias vi="nvim"
+    # alias v="nvim"
+    # alias vim="nvim"
+    # alias vi="nvim"
     alias c="cd"
     alias b="cd .."
     alias x="startx"
@@ -76,10 +73,10 @@
     alias soft="ssh soft"
 
     # fcitx setting
-    export XMODIFIERS=@im=fcitx
-    export GTK_IM_MODULE=xim
-    export QT_IM_MODULE=fcitx
-    export DefaultIMModule=fcitx
+    # export XMODIFIERS=@im=fcitx
+    # export GTK_IM_MODULE=xim
+    # export QT_IM_MODULE=fcitx
+    # export DefaultIMModule=fcitx
 
     set -o vi
     '';
