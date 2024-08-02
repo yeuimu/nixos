@@ -6,15 +6,33 @@
       ./hardware-configuration.nix
     ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  # Boot
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
   # System Config
-  networking.networkmanager.enable = true;
-  networking.hostName = "nixos";
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+    trusted-users = ["yoyoki"];
+    substituters = [ 
+      "https://mirrors.cernet.edu.cn/nixos-images/"
+      "https://mirror.sjtu.edu.cn/nix-channels/store"
+      "https://mirrors.ustc.edu.cn/nix-channels/store"
+      
+      "https://cache.nixos.org"
+    ];
+  };
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      pulseaudio = true;
+    };
+  };
+  system.stateVersion = "24.05";
+  boot = {
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
+  };
+  networking = {
+    networkmanager.enable = true;
+    hostName = "nixos";
+  };
   time.timeZone = "Asia/Shanghai";
 
   # System software
@@ -23,19 +41,35 @@
     git
     bash
     zsh
-    sxhkd
+    # sxhkd
   ];
   environment.variables.EDITOR = "vim";
 
   # Desktop
-  services.xserver.enable = true;
-  services.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
-  services.xserver.windowManager.bspwm = {
-    enable = true;
+  services = {
+    xserver = {
+      enable = true;
+      videoDrivers = [ "amdgpu" ];
+      # windowManager.bspwm.enable = true;
+    };
+    desktopManager.plasma6.enable = true;
+    displayManager.sddm.enable = true;
+    libinput.enable = true;
+    flatpak.enable = true;
   };
-  services.libinput.enable = true;
-  i18n.defaultLocale = "zh_CN.UTF-8";
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  xdg.portal.config.common.default = "gtk";
+  i18n = {
+    defaultLocale = "zh_CN.UTF-8";
+    inputMethod = {
+      enabled = "fcitx5";
+      fcitx5.addons = with pkgs; [
+        fcitx5-mozc
+        fcitx5-gtk
+	kdePackages.fcitx5-chinese-addons
+      ];
+    };
+  };
 
   # ssh
   services.openssh.enable = true;
@@ -99,17 +133,5 @@
     shell = pkgs.zsh;
   };
 
-  nix.settings = {
-    trusted-users = ["yoyoki"];
-    substituters = [ 
-      "https://mirror.sjtu.edu.cn/nix-channels/store"
-      "https://mirrors.ustc.edu.cn/nix-channels/store"
-      
-      "https://cache.nixos.org"
-    ];
-  };
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.pulseaudio = true;
-  system.stateVersion = "24.05";
 }
 
