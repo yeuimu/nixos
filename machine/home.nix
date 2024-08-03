@@ -6,42 +6,11 @@
 
   # User software
   home.packages = with pkgs; [
-  #   # Destop for bspwm
-  #   feh
-  #   rofi
-  #   polybar
-  #   picom
-  #   pavucontrol
-
-     # GUI Software
-     kitty
-     firefox
-  #   wpsoffice-cn
-
-    # Proxy
+    firefox
     v2ray
     v2raya
-
-  #   zsh
-     neovim
-
-  #   # archives
-  #   zip
-  #   xz
-  #   unzip
-  #   p7zip
-
-  #   # utils
-  #   ripgrep # grep
-  #   eza # ls
-  #   fzf # fuzzy finder
-
-  #   # networking tools
-  #   aria2 # download utility
-
-  #   # misc
-  #   tree
-
+    neovim
+    gnome-console
   ];
 
   # git
@@ -60,24 +29,6 @@
       plugins = ["git"];
     };
     initExtra = ''
-    # alias
-    # alias v="nvim"
-    # alias vim="nvim"
-    # alias vi="nvim"
-    alias c="cd"
-    alias b="cd .."
-    alias x="startx"
-    alias cls="clear"
-    alias e="emacs -nw"
-    alias sd="sudo"
-    alias soft="ssh soft"
-
-    # fcitx setting
-    # export XMODIFIERS=@im=fcitx
-    # export GTK_IM_MODULE=xim
-    # export QT_IM_MODULE=fcitx
-    # export DefaultIMModule=fcitx
-
     set -o vi
     '';
   };

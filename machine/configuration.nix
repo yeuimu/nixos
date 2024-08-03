@@ -41,7 +41,6 @@
     git
     bash
     zsh
-    # sxhkd
   ];
   environment.variables.EDITOR = "vim";
 
@@ -50,15 +49,13 @@
     xserver = {
       enable = true;
       videoDrivers = [ "amdgpu" ];
-      # windowManager.bspwm.enable = true;
+      desktopManager.gnome.enable = true;
+      displayManager.gdm.enable = true;
     };
-    desktopManager.plasma6.enable = true;
-    displayManager.sddm.enable = true;
+    gnome.core-utilities.enable = false;
     libinput.enable = true;
     flatpak.enable = true;
   };
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  xdg.portal.config.common.default = "gtk";
   i18n = {
     defaultLocale = "zh_CN.UTF-8";
     inputMethod = {
@@ -66,7 +63,7 @@
       fcitx5.addons = with pkgs; [
         fcitx5-mozc
         fcitx5-gtk
-	kdePackages.fcitx5-chinese-addons
+	libsForQt5.fcitx5-chinese-addons
       ];
     };
   };
@@ -106,20 +103,6 @@
               ];
           };
       };
-  };
-
-  # Sound
-  sound = {
-    enable = true;
-    extraConfig = ''
-      defaults.pcm.card 0
-      defaults.ctl.card 0
-    '';
-  };
-  hardware.pulseaudio = {
-    enable = true;
-    support32Bit = true;
-    package = pkgs.pulseaudioFull;
   };
 
   # User
