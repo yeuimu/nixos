@@ -54,7 +54,7 @@
       desktopManager.gnome.enable = true;
       displayManager.gdm.enable = true;
     };
-    gnome.core-utilities.enable = false;
+    # gnome.core-utilities.enable = false;
     libinput.enable = true;
     flatpak.enable = true;
   };

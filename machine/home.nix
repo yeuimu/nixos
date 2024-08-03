@@ -10,7 +10,6 @@
     v2ray
     v2raya
     neovim
-    gnome-console
   ];
 
   # git
