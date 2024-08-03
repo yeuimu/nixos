@@ -58,6 +58,17 @@
     libinput.enable = true;
     flatpak.enable = true;
   };
+  environment.gnome.excludePackages = with pkgs.gnome; [
+    pkgs.gnome-tour
+    pkgs.gnome-user-docs
+    pkgs.gnome-connections
+    gnome-weather
+    gnome-maps
+    gnome-characters
+    gnome-contacts
+    epiphany
+    yelp
+  ];
   i18n = {
     defaultLocale = "zh_CN.UTF-8";
     inputMethod = {
