@@ -46,9 +46,11 @@
 
   # Desktop
   services = {
+    openssh.enable = true;
     xserver = {
       enable = true;
       videoDrivers = [ "amdgpu" ];
+      excludePackages = with pkgs; [ xterm ];
       desktopManager.gnome.enable = true;
       displayManager.gdm.enable = true;
     };
@@ -67,11 +69,6 @@
       ];
     };
   };
-
-  # ssh
-  services.openssh.enable = true;
-
-  # fonts
   fonts = {
       fontDir.enable = true;
       packages = with pkgs; [
