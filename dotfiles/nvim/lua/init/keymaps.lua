@@ -14,6 +14,7 @@ map({ 'i', 'x', 'n', 's' }, '<C-s>', '<cmd>w<cr><esc>', { desc = 'Save File' })
 
 -- Buffer operation
 map('n', '<C-w>', '<cmd>bd', { desc = 'Delete current buffer', remap = true })
+map('n', 'gt', '<cmd>BufferLinePick', { desc = 'Pick which buffer', remap = true })
 
 -- Terminal Mappings
 map("t", "<A-x>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
