@@ -71,6 +71,12 @@ local langs = {
     lsp = 'pyright',
     lspconfig = 'pyright',
     formatter = 'autopep8',
+  },
+  nix = {
+    ft = 'nix',
+    lsp = 'nil',
+    lspconfig = 'nil_ls',
+    formatter = 'nixfmt',
   }
 }
 
