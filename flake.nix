@@ -21,7 +21,7 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.yoyoki = import ./machine/home.nix;
-	  home-manager.extraSpecialArgs = inputs;
+          home-manager.extraSpecialArgs = inputs;
           home-manager.backupFileExtension = "backup";
           }
         ];
@@ -41,7 +41,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.yoyoki = import ./wsl/home.nix;
-	    home-manager.extraSpecialArgs = inputs;
+            home-manager.extraSpecialArgs = inputs;
           }
         ];
       };
