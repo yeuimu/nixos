@@ -41,6 +41,9 @@
     git
     bash
     zsh
+    v2ray # proxy
+    v2raya
+    python3 # dev
   ];
   environment.variables.EDITOR = "vim";
 
@@ -53,8 +56,8 @@
       excludePackages = with pkgs; [ xterm ];
       desktopManager.gnome.enable = true;
       displayManager.gdm.enable = true;
+      # windowManager.bspwm.enable; # for bspwm
     };
-    # gnome.core-utilities.enable = false;
     libinput.enable = true;
     flatpak.enable = true;
   };
@@ -76,7 +79,7 @@
       fcitx5.addons = with pkgs; [
         fcitx5-mozc
         fcitx5-gtk
-	libsForQt5.fcitx5-chinese-addons
+      	libsForQt5.fcitx5-chinese-addons
       ];
     };
   };
@@ -124,5 +127,18 @@
     shell = pkgs.zsh;
   };
 
+  # Sound for bspwm
+  # sound = {
+  #   enable = true;
+  #   extraConfig = ''
+  #     defaults.pcm.card 0
+  #     defaults.ctl.card 0
+  #   '';
+  # };
+  # hardware.pulseaudio = {
+  #   enable = true;
+  #   support32Bit = true;
+  #   package = pkgs.pulseaudioFull;
+  # };
 }
 
