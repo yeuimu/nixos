@@ -11,6 +11,15 @@
     emacs
     unzip
     smartgithg
+    # neovim
+    lua-language-server # lua lsp
+    stylua # lua fmt
+    rust-analyzer # rust lsp
+    rustfmt # rust fmt
+    pyright # python lsp
+    python312Packages.autopep8 # python fmt
+    nil # nix lsp
+    nixfmt-rfc-style # nix fmt
   ];
 
   # git
