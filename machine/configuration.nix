@@ -45,6 +45,8 @@
     v2raya
     python3 # dev
     gnumake
+    nodejs_20
+    gcc
   ];
   environment.variables.EDITOR = "vim";
 
