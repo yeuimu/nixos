@@ -11,9 +11,9 @@
     experimental-features = [ "nix-command" "flakes" ];
     trusted-users = ["yoyoki"];
     substituters = [ 
-      "https://mirrors.cernet.edu.cn/nixos-images/"
-      "https://mirror.sjtu.edu.cn/nix-channels/store"
-      "https://mirrors.ustc.edu.cn/nix-channels/store"
+      # "https://mirrors.cernet.edu.cn/nixos-images/"
+      # "https://mirror.sjtu.edu.cn/nix-channels/store"
+      # "https://mirrors.ustc.edu.cn/nix-channels/store"
       
       "https://cache.nixos.org"
     ];
