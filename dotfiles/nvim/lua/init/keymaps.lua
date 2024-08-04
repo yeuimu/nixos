@@ -13,10 +13,10 @@ map({ 'n', 'v' }, '<Leader>qw', ':qw<CR>')
 map({ 'i', 'x', 'n', 's' }, '<C-s>', '<cmd>w<cr><esc>', { desc = 'Save File' })
 
 -- Buffer operation
-map('n', '<C-w>', '<cmd>bd', { desc = 'Delete current buffer', remap = true })
-map('n', 'gt', '<cmd>BufferLinePick', { desc = 'Pick which buffer', remap = true })
-map('n', 'gp', '<cmd>bp', { desc = 'Go to previous buffer', remap = true })
-map('n', 'gn', '<cmd>bn', { desc = 'Go to next buffer', remap = true })
+map('n', 'gw', '<cmd>bd<cr>', { desc = 'Delete current buffer', remap = true })
+map('n', 'gt', '<cmd>BufferLinePick<cr>', { desc = 'Pick which buffer', remap = true })
+map('n', 'gp', '<cmd>bp<cr>', { desc = 'Go to previous buffer', remap = true })
+map('n', 'gn', '<cmd>bn<cr>', { desc = 'Go to next buffer', remap = true })
 
 -- Terminal Mappings
 map("t", "<A-x>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
