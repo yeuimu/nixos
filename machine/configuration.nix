@@ -44,6 +44,7 @@
     v2ray # proxy
     v2raya
     python3 # dev
+    gnumake
   ];
   environment.variables.EDITOR = "vim";
 
