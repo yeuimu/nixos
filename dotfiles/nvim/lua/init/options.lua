@@ -23,6 +23,8 @@ vim.opt.softtabstop = 2  -- 设置按下退格键时处理空格的方式
 -- 折叠层级
 vim.opt.foldlevel = 99
 vim.opt.conceallevel = 2
+vim.opt.foldenable = true
+vim.opt.foldlevelstart = 99
 
 -- 快捷键反应时间
 vim.opt.timeoutlen = 1500
