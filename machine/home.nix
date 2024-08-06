@@ -10,7 +10,7 @@
     neovim
     emacs
     unzip
-    smartgithg
+    lazygit
     # neovim
     lua-language-server # lua lsp
     stylua # lua fmt
@@ -76,11 +76,11 @@
   #   recursive = true;
   #   executable = true;
   # }; # polybar
-  # home.file.".config/kitty" = {
-  #   source = ../dotfiles/kitty;
-  #   recursive = true;
-  #   executable = true;
-  # }; # kitty
+  home.file.".config/kitty" = {
+    source = ../dotfiles/kitty;
+    recursive = true;
+    executable = true;
+  }; # kitty
 
   # itself
   home.stateVersion = "24.05";
