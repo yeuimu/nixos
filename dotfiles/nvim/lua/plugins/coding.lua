@@ -172,7 +172,7 @@ return {
         vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
         vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-        --vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+        vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
         vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
         vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
         vim.keymap.set('n', '<space>wl', function()
@@ -197,13 +197,10 @@ return {
 
       for _, lang in pairs(langs) do
         if lang.lspconfig ~= nil then
-          local on_attach = opts.on_attach
-          local capabilities = opts.capabilities
-          local setting = lang.setting
           lspconfig[lang.lspconfig].setup {
-            on_attach = on_attach,
-            capabilities = capabilities,
-            settings = setting,
+            on_attach = opts.on_attach,
+            capabilities = opts.capabilities,
+            settings = lang.setting,
           }
         end
       end
@@ -361,12 +358,12 @@ return {
     pin = true,
     ft = lang_fts,
     opts = function()
-      local formatters_by_ft = {}
+      local formatters = {}
       for _, lang in pairs(langs) do
-        table.insert(formatters_by_ft, lang.formatter)
+        formatters[lang.ft] = { lang.formatter }
       end
       return {
-        formatters_by_ft = formatters_by_ft,
+        formatters_by_ft = formatters,
         format_on_save = {
           timeout_ms = 500,
           lsp_fallback = true,
