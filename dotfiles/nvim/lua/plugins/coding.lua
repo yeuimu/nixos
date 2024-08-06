@@ -360,9 +360,6 @@ return {
     'stevearc/conform.nvim',
     pin = true,
     ft = lang_fts,
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter'
-    },
     opts = function()
       local formatters_by_ft = {}
       for _, lang in pairs(langs) do
@@ -485,5 +482,15 @@ return {
         },
       })
     end,
+  },
+
+  -- oil
+  {
+    'stevearc/oil.nvim',
+    config = function()
+      require("oil").setup()
+      vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+    end,
+    lazy = false,
   }
 }
