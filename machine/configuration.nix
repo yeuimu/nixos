@@ -119,13 +119,24 @@
       };
   };
 
+  # Docker
+  virtualisation.docker.enable = true;
+  virtualisation.docker.storageDriver = "btrfs";
+
+  # Systemd
+  systemd.services.v2raya = {
+    description = "v2raya service";
+    script = "${pkgs.v2raya}/bin/v2rayA";
+    wantedBy = [ "multi-user.target" ];
+  };
+
   # User
   programs.zsh.enable = true;
   users.users.yoyoki = {
     isNormalUser = true;
     home = "/home/yoyoki";
     description = "I am what is me.";
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = [ "wheel" "networkmanager" "docker" ];
     password = "yoyoki";
     shell = pkgs.zsh;
   };
