@@ -1,23 +1,37 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-    ];
+  imports = [ ./hardware-configuration.nix ];
 
   # System Config
+  boot = {
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
+    kernel.sysctl = {
+      "net.ipv4.ip_forward" = "1";
+    };
+  };
+
   nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
-    trusted-users = ["yoyoki"];
-    substituters = [ 
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+    trusted-users = [ "yoyoki" ];
+    substituters = [
       # "https://mirrors.cernet.edu.cn/nixos-images/"
       # "https://mirror.sjtu.edu.cn/nix-channels/store"
       # "https://mirrors.ustc.edu.cn/nix-channels/store"
-      
+
       "https://cache.nixos.org"
     ];
   };
+
   nixpkgs = {
     config = {
       allowUnfree = true;
@@ -25,13 +39,11 @@
     };
   };
   system.stateVersion = "24.05";
-  boot = {
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
-  };
+
   networking = {
     networkmanager.enable = true;
     hostName = "nixos";
+    firewall.enable = false;
   };
   time.timeZone = "Asia/Shanghai";
 
@@ -49,6 +61,12 @@
     gcc
   ];
   environment.variables.EDITOR = "vim";
+  # for gnome extents
+  programs.firefox = {
+    enable = true;
+    package = pkgs.firefox;
+    nativeMessagingHosts.packages = with pkgs; [ browserpass ];
+  };
 
   # Desktop
   services = {
@@ -63,6 +81,7 @@
     };
     libinput.enable = true;
     flatpak.enable = true;
+    gnome.gnome-browser-connector.enable = true;
   };
   environment.gnome.excludePackages = with pkgs.gnome; [
     pkgs.gnome-tour
@@ -82,46 +101,47 @@
       fcitx5.addons = with pkgs; [
         fcitx5-mozc
         fcitx5-gtk
-      	libsForQt5.fcitx5-chinese-addons
+        libsForQt5.fcitx5-chinese-addons
       ];
     };
   };
   fonts = {
-      fontDir.enable = true;
-      packages = with pkgs; [
-          noto-fonts
-          noto-fonts-cjk-sans
-          noto-fonts-cjk-serif
-          jetbrains-mono
-          (terminus-nerdfont.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
-      ];
-      fontconfig = {
-          defaultFonts = {
-              emoji = [
-                  "Noto Color Emoji"
-              ];
-              monospace = [
-                  "JetBrains Mono"
-                  "Noto Sans Mono CJK SC"
-                  "Symbols Nerd Font"
-              ];
-              sansSerif = [
-                  "Noto Sans"
-                  "Noto Sans CJK SC"
-                  "Symbols Nerd Font"
-              ];
-              serif = [
-                  "Noto Serif"
-                  "Noto Serif CJK SC"
-                  "Symbols Nerd Font"
-              ];
-          };
+    fontDir.enable = true;
+    packages = with pkgs; [
+      noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
+      jetbrains-mono
+      (terminus-nerdfont.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+    ];
+    fontconfig = {
+      defaultFonts = {
+        emoji = [ "Noto Color Emoji" ];
+        monospace = [
+          "JetBrains Mono"
+          "Noto Sans Mono CJK SC"
+          "Symbols Nerd Font"
+        ];
+        sansSerif = [
+          "Noto Sans"
+          "Noto Sans CJK SC"
+          "Symbols Nerd Font"
+        ];
+        serif = [
+          "Noto Serif"
+          "Noto Serif CJK SC"
+          "Symbols Nerd Font"
+        ];
       };
+    };
   };
 
   # Docker
-  virtualisation.docker.enable = true;
-  virtualisation.docker.storageDriver = "btrfs";
+  virtualisation.docker = {
+    enable = true;
+    storageDriver = "btrfs";
+    package = pkgs.docker_27;
+  };
 
   # User
   programs.zsh.enable = true;
@@ -129,7 +149,11 @@
     isNormalUser = true;
     home = "/home/yoyoki";
     description = "I am what is me.";
-    extraGroups = [ "wheel" "networkmanager" "docker" ];
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "docker"
+    ];
     password = "yoyoki";
     shell = pkgs.zsh;
   };
@@ -148,4 +172,3 @@
   #   package = pkgs.pulseaudioFull;
   # };
 }
-

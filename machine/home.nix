@@ -6,7 +6,6 @@
 
   # User software
   home.packages = with pkgs; [
-    firefox
     neovim
     emacs
     unzip
@@ -35,10 +34,10 @@
     oh-my-zsh = {
       enable = true;
       theme = "robbyrussell";
-      plugins = ["git"];
+      plugins = [ "git" ];
     };
     initExtra = ''
-    set -o vi
+      set -o vi
     '';
   };
 
@@ -85,5 +84,4 @@
   # itself
   home.stateVersion = "24.05";
   programs.home-manager.enable = true;
-
 }
