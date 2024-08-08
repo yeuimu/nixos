@@ -53,8 +53,8 @@
     git
     bash
     zsh
-    v2ray # proxy
-    v2raya
+    # v2ray # proxy
+    # v2raya
     python3 # dev
     gnumake
     nodejs_20
@@ -83,18 +83,36 @@
     flatpak.enable = true;
     gnome.gnome-browser-connector.enable = true;
   };
-  environment.gnome.excludePackages = with pkgs.gnome; [
-    pkgs.gnome-tour
-    pkgs.gnome-user-docs
-    pkgs.gnome-connections
-    gnome-weather
-    gnome-maps
-    gnome-characters
-    gnome-contacts
-    epiphany
-    yelp
-  ];
+  environment.gnome.excludePackages =
+    (with pkgs; [
+      gnome-tour
+      gnome-user-docs
+      gnome-connections
+      gnome-text-editor
+      gnome-usage
+      gnome-user-docs
+      orca
+    ])
+    ++ (with pkgs.gnome; [
+      gnome-initial-setup
+      gnome-weather
+      gnome-maps
+      gnome-characters
+      gnome-contacts
+      gnome-logs
+      gnome-keyring
+      simple-scan
+      epiphany
+      yelp
+    ]);
+
+  # Localization
   i18n = {
+    supportedLocales = [
+      "en_US.UTF-8/UTF-8"
+      "zh_CN.UTF-8/UTF-8"
+      "zh_SG.UTF-8/UTF-8"
+    ];
     defaultLocale = "zh_CN.UTF-8";
     inputMethod = {
       enabled = "fcitx5";
@@ -105,6 +123,7 @@
       ];
     };
   };
+
   fonts = {
     fontDir.enable = true;
     packages = with pkgs; [
@@ -137,10 +156,12 @@
   };
 
   # Docker
-  virtualisation.docker = {
-    enable = true;
-    storageDriver = "btrfs";
-    package = pkgs.docker_27;
+  virtualisation = {
+    docker = {
+      enable = true;
+      storageDriver = "btrfs";
+      package = pkgs.docker_27;
+    };
   };
 
   # User
