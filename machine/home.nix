@@ -6,6 +6,7 @@
 
   # User software
   home.packages = with pkgs; [
+    vscode-fhs
     neovim
     emacs
     unzip
